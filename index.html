@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linkor — Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface2: #1c1c28;
+      --border: rgba(255,255,255,0.07);
+      --accent: #6366f1;
+      --accent2: #a78bfa;
+      --amber: #f59e0b;
+      --teal: #2dd4bf;
+      --text: #f0f0f8;
+      --muted: #8888aa;
+      --faint: #3a3a55;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0a0a0f !important;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BG ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ── */
+    .glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-1 { width: 500px; height: 500px; background: rgba(99,102,241,0.08); top: -100px; left: -100px; }
+    .glow-2 { width: 400px; height: 400px; background: rgba(45,212,191,0.05); bottom: 0; right: -50px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px;
+      color: var(--text); text-decoration: none;
+    }
+    .logo-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── WRAPPER ── */
+    .wrapper { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 100px 24px 80px;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 12px; font-weight: 500; color: var(--accent2);
+      margin-bottom: 28px; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(40px, 7vw, 72px); line-height: 1.05;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 18px; color: var(--muted); max-width: 520px;
+      margin: 0 auto 40px; line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; text-decoration: none;
+      padding: 14px 32px; border-radius: 100px;
+      font-weight: 600; font-size: 15px;
+      box-shadow: 0 0 40px rgba(99,102,241,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(99,102,241,0.5); }
+
+    /* ── FEATURES STRIP ── */
+    .features-strip {
+      display: flex; gap: 0;
+      border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden; margin: 0 24px 80px;
+      position: relative; z-index: 1;
+    }
+    .feature-item {
+      flex: 1; padding: 28px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+      transition: background .2s;
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-item:hover { background: var(--surface2); }
+    .feature-icon { font-size: 28px; margin-bottom: 10px; }
+    .feature-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .feature-desc { font-size: 12px; color: var(--muted); }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 28px; margin-bottom: 8px;
+    }
+    .section-sub { color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+
+    /* ── FAQ ── */
+    .faq { padding: 40px 0 80px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      transition: border-color .2s;
+    }
+    .faq-item:hover { border-color: var(--faint); }
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none;
+      color: var(--text); font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 500; cursor: pointer;
+      padding: 20px 24px; display: flex; justify-content: space-between; align-items: center;
+      gap: 16px;
+    }
+    .faq-arrow {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--faint); display: flex; align-items: center; justify-content: center;
+      font-size: 12px; flex-shrink: 0; transition: transform .3s, background .2s;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--accent); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s;
+      font-size: 14px; color: var(--muted); line-height: 1.7;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 24px 20px; }
+
+    /* ── CONTACT ── */
+    .contact-section { padding: 40px 0 80px; }
+    .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      transition: border-color .2s, transform .2s;
+      text-decoration: none; color: inherit;
+      display: block;
+    }
+    .contact-card:hover { border-color: var(--faint); transform: translateY(-3px); }
+    .contact-card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 16px;
+    }
+    .contact-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 6px; }
+    .contact-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CREDITS GUIDE ── */
+    .credits-section { padding: 40px 0 80px; }
+    .credits-table {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+    }
+    .credits-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .credits-row:last-child { border-bottom: none; }
+    .credits-row:hover { background: var(--surface2); }
+    .credits-left { display: flex; align-items: center; gap: 14px; }
+    .cr-icon { font-size: 20px; width: 36px; text-align: center; }
+    .cr-name { font-size: 15px; font-weight: 500; }
+    .cr-desc { font-size: 12px; color: var(--muted); }
+    .cr-cost {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px;
+      color: var(--accent2);
+      background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.2);
+      padding: 4px 14px; border-radius: 100px;
+    }
+
+    /* ── EMAIL BLOCK ── */
+    .email-block {
+      margin-top: 20px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(167,139,250,0.08));
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 20px; padding: 28px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .email-block-left { display: flex; align-items: center; gap: 20px; flex: 1; min-width: 240px; }
+    .email-icon { font-size: 36px; flex-shrink: 0; }
+    .email-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 17px; margin-bottom: 6px;
+    }
+    .email-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .email-btn {
+      display: inline-flex; align-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; text-decoration: none;
+      padding: 14px 28px; border-radius: 100px;
+      font-weight: 600; font-size: 15px; white-space: nowrap;
+      box-shadow: 0 0 30px rgba(99,102,241,0.35);
+      transition: transform .2s, box-shadow .2s;
+      flex-shrink: 0;
+    }
+    .email-btn:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(99,102,241,0.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 40px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .foot-logo {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 16px; color: var(--muted);
+    }
+    footer .foot-links { display: flex; gap: 24px; }
+    footer .foot-links a {
+      color: var(--muted); text-decoration: none; font-size: 13px;
+      transition: color .2s;
+    }
+    footer .foot-links a:hover { color: var(--text); }
+    footer .foot-copy { font-size: 12px; color: var(--faint); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      animation: fadeUp .6s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up:nth-child(1) { animation-delay: .1s; }
+    .fade-up:nth-child(2) { animation-delay: .2s; }
+    .fade-up:nth-child(3) { animation-delay: .3s; }
+    .fade-up:nth-child(4) { animation-delay: .4s; }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .features-strip { flex-direction: column; }
+      .feature-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .feature-item:last-child { border-bottom: none; }
+      .contact-cards { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-icon">🔗</div>
+    Linkor
+  </a>
+  <div class="nav-links">
+    <a href="#faq">FAQ</a>
+    <a href="#credits">Credits</a>
+    <a href="#contact">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ Support Center</div>
+  <h1>How can we<br/>help you?</h1>
+  <p>Everything you need to get the most out of Linkor — your AI-powered personal CRM.</p>
+  <a href="#faq" class="hero-cta">Browse FAQ →</a>
+</div>
+
+<!-- FEATURES STRIP -->
+<div class="features-strip">
+  <div class="feature-item fade-up">
+    <div class="feature-icon">🕸️</div>
+    <div class="feature-label">Relationship Graph</div>
+    <div class="feature-desc">Visualize your network</div>
+  </div>
+  <div class="feature-item fade-up">
+    <div class="feature-icon">✨</div>
+    <div class="feature-label">AI Autofill</div>
+    <div class="feature-desc">OSINT-powered research</div>
+  </div>
+  <div class="feature-item fade-up">
+    <div class="feature-icon">📋</div>
+    <div class="feature-label">Deep Dossiers</div>
+    <div class="feature-desc">Track everything</div>
+  </div>
+  <div class="feature-item fade-up">
+    <div class="feature-icon">🧠</div>
+    <div class="feature-label">AI Advisor</div>
+    <div class="feature-desc">Personalized insights</div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="wrapper">
+  <section class="faq" id="faq">
+    <div class="section-title">Frequently Asked Questions</div>
+    <div class="section-sub">Quick answers to the most common questions.</div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is Linkor?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">Linkor is a personal CRM app that helps you manage your relationships, build detailed dossiers on your contacts, and use AI to research and analyze your network — all stored privately on your device.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How does AI Autofill work?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">AI Autofill uses Anthropic's Claude with web search to find publicly available information about a person. You enter a name and company, and Linkor automatically populates the dossier with career history, social profiles, and more. It costs 10 credits per use.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What are credits and how do I get more?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">Credits power AI features. You receive 20 free credits when you start. Additional credits can be purchased in packs (20, 75, 200, or 600). Credits never expire. You can buy more in Settings → Add Credits.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does a subscription include?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">A subscription (Monthly or Annual) unlocks unlimited contacts beyond the free 3-contact limit. AI credits are purchased separately. The Lifetime plan includes unlimited contacts plus 100 bonus credits as a one-time purchase.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is my data private and secure?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">Yes. All your contact data is stored locally on your device using Apple's Core Data. We do not upload your personal contact data to any server. AI features send only the specific search query or note to Anthropic's API and nothing else.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I cancel my subscription?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">Subscriptions are managed through Apple. Go to Settings → Apple ID → Subscriptions on your iPhone, find Linkor, and tap Cancel Subscription. You'll retain access until the end of the billing period.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I restore my purchases on a new device?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">Open Linkor, go to Settings → Subscription and tap "Restore Purchases". Make sure you're signed in with the same Apple ID used for the original purchase.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I export my data?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">Yes. Go to Settings → Export all data (JSON) to export a complete backup of all your contacts, dossier fields, and events as a JSON file. You can also export individual contact dossiers as PDF from the Full Dossier view.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What languages does Linkor support?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">The app interface is fully localized in English and Russian. AI responses automatically use your device language or you can set a preferred language in Settings → AI Response Language.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Why didn't AI Autofill find information about my contact?
+          <div class="faq-arrow">↓</div>
+        </button>
+        <div class="faq-a">AI Autofill only finds publicly available information. If someone has a limited online presence, results may be sparse. Credits are not deducted if no results are found. Try adding the company name or city for better results.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CREDITS GUIDE -->
+  <section class="credits-section" id="credits">
+    <div class="section-title">AI Credits Guide</div>
+    <div class="section-sub">How credits are used across AI features.</div>
+
+    <div class="credits-table">
+      <div class="credits-row">
+        <div class="credits-left">
+          <div class="cr-icon">✨</div>
+          <div>
+            <div class="cr-name">AI Autofill</div>
+            <div class="cr-desc">Automatically research a contact using web search</div>
+          </div>
+        </div>
+        <div class="cr-cost">10 cr</div>
+      </div>
+      <div class="credits-row">
+        <div class="credits-left">
+          <div class="cr-icon">🧠</div>
+          <div>
+            <div class="cr-name">AI Advisor</div>
+            <div class="cr-desc">Get personalized relationship advice and next actions</div>
+          </div>
+        </div>
+        <div class="cr-cost">5 cr</div>
+      </div>
+      <div class="credits-row">
+        <div class="credits-left">
+          <div class="cr-icon">📋</div>
+          <div>
+            <div class="cr-name">Meeting Prep</div>
+            <div class="cr-desc">Generate a pre-meeting briefing with key talking points</div>
+          </div>
+        </div>
+        <div class="cr-cost">4 cr</div>
+      </div>
+      <div class="credits-row">
+        <div class="credits-left">
+          <div class="cr-icon">🎤</div>
+          <div>
+            <div class="cr-name">Quick Note</div>
+            <div class="cr-desc">Parse a free-form note into structured dossier fields</div>
+          </div>
+        </div>
+        <div class="cr-cost">2 cr</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-title">Get in Touch</div>
+    <div class="section-sub">We're here to help with any questions or issues.</div>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="contact-card-icon" style="background:rgba(99,102,241,0.15);">🛟</div>
+        <h3>App Store Support</h3>
+        <p>For billing issues, refunds, and subscription management, visit the Linkor page on the App Store and tap "App Support".</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon" style="background:rgba(45,212,191,0.12);">🐛</div>
+        <h3>Report a Bug</h3>
+        <p>Found something broken? Open an issue on our GitHub repository with steps to reproduce and your iOS version.</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon" style="background:rgba(245,158,11,0.12);">💡</div>
+        <h3>Feature Requests</h3>
+        <p>Have an idea to make Linkor better? We'd love to hear it. Submit a feature request via GitHub Discussions.</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon" style="background:rgba(167,139,250,0.12);">📄</div>
+        <h3>Privacy Policy</h3>
+        <p>Read our full privacy policy to understand how your data is handled — spoiler: it stays on your device.</p>
+      </div>
+    </div>
+
+    <!-- EMAIL DEVELOPER -->
+    <div class="email-block">
+      <div class="email-block-left">
+        <div class="email-icon">✉️</div>
+        <div>
+          <div class="email-title">Contact the Developer</div>
+          <div class="email-desc">Have a question, suggestion, or need direct support? Send us an email and we'll get back to you as soon as possible.</div>
+        </div>
+      </div>
+      <a href="mailto:karabetskiy.d@gmail.com?subject=Linkor%20Support&body=Hi%2C%0A%0AApp%20version%3A%20%0AiOS%20version%3A%20%0A%0AMessage%3A%20" class="email-btn">
+        ✉ &nbsp; Send Email
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">🔗 Linkor</div>
+  <div class="foot-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Support</a>
+  </div>
+  <div class="foot-copy">© 2026 Linkor. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
