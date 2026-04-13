@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linkor — Privacy Policy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface2: #1c1c28;
+      --border: rgba(255,255,255,0.07);
+      --accent: #6366f1;
+      --accent2: #a78bfa;
+      --teal: #2dd4bf;
+      --text: #f0f0f8;
+      --muted: #8888aa;
+      --faint: #3a3a55;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0a0a0f !important;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
+
+    .glow {
+      position: fixed; border-radius: 50%;
+      filter: blur(120px); pointer-events: none; z-index: 0;
+    }
+    .glow-1 { width: 400px; height: 400px; background: rgba(99,102,241,0.06); top: -80px; right: -80px; }
+    .glow-2 { width: 350px; height: 350px; background: rgba(45,212,191,0.04); bottom: 100px; left: -80px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px;
+      color: var(--text); text-decoration: none;
+    }
+    .logo-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: 14px;
+      font-weight: 500; transition: color .2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(45,212,191,0.1); border: 1px solid rgba(45,212,191,0.25);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 12px; font-weight: 500; color: var(--teal);
+      margin-bottom: 24px; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(32px, 5vw, 56px); line-height: 1.1;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--teal) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-meta {
+      font-size: 14px; color: var(--muted);
+    }
+
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto; padding: 0 24px 100px;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 32px; margin-bottom: 48px;
+    }
+    .toc-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .toc-list a {
+      color: var(--accent2); text-decoration: none; font-size: 14px;
+      font-weight: 500; transition: color .2s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .toc-list a::before {
+      content: '→'; font-size: 12px; color: var(--faint);
+      transition: color .2s, transform .2s;
+    }
+    .toc-list a:hover { color: var(--text); }
+    .toc-list a:hover::before { color: var(--accent2); transform: translateX(3px); }
+
+    /* SECTIONS */
+    .policy-section {
+      margin-bottom: 48px;
+      scroll-margin-top: 80px;
+    }
+    .policy-section h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 22px; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-num {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: #fff;
+    }
+    .policy-section p {
+      font-size: 15px; color: var(--muted); line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul {
+      list-style: none; margin: 12px 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .policy-section ul li {
+      font-size: 15px; color: var(--muted); line-height: 1.7;
+      padding-left: 20px; position: relative;
+    }
+    .policy-section ul li::before {
+      content: '·'; position: absolute; left: 0;
+      color: var(--accent2); font-size: 20px; line-height: 1.2;
+    }
+
+    .highlight-box {
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 14px; padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .highlight-box p { color: #f0f0f8 !important; }
+
+    .teal-box {
+      background: rgba(45,212,191,0.10);
+      border: 1px solid rgba(45,212,191,0.3);
+      border-radius: 14px; padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .teal-box p { color: #f0f0f8 !important; }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px; background: var(--border);
+      margin: 48px 0;
+    }
+
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .foot-logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--muted); }
+    footer a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color .2s; }
+    footer a:hover { color: var(--text); }
+    footer .foot-copy { font-size: 12px; color: var(--faint); }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-icon">🔗</div>
+    Linkor
+  </a>
+  <a class="nav-back" href="index.html">← Back to Support</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔒 Legal Document</div>
+  <h1>Privacy Policy</h1>
+  <p class="hero-meta">Last updated: April 8, 2026</p>
+</div>
+
+<div class="wrapper">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+      <li><a href="#s1">Introduction</a></li>
+      <li><a href="#s2">Information We Collect</a></li>
+      <li><a href="#s3">How We Use Your Information</a></li>
+      <li><a href="#s4">Data Storage</a></li>
+      <li><a href="#s5">Third-Party Services</a></li>
+      <li><a href="#s6">Data Sharing</a></li>
+      <li><a href="#s7">Data Retention and Deletion</a></li>
+      <li><a href="#s8">Children's Privacy</a></li>
+      <li><a href="#s9">Your Rights</a></li>
+      <li><a href="#s10">Contact Us</a></li>
+      <li><a href="#s11">Changes to This Policy</a></li>
+    </ul>
+  </div>
+
+  <div class="policy-section" id="s1">
+    <h2><div class="section-num">1</div> Introduction</h2>
+    <div class="teal-box">
+      <p>Linkor is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use the Linkor mobile application.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s2">
+    <h2><div class="section-num">2</div> Information We Collect</h2>
+    <p><strong style="color:var(--text)">Information You Provide:</strong></p>
+    <ul>
+      <li>Contact names, photos, and relationship data you manually enter</li>
+      <li>Notes, events, and dossier fields you create</li>
+      <li>Your display name entered during onboarding</li>
+      <li>Referral codes you enter or share</li>
+    </ul>
+    <p><strong style="color:var(--text)">Information Collected Automatically:</strong></p>
+    <ul>
+      <li>App usage data and crash reports (via Apple's standard frameworks)</li>
+      <li>Purchase history for subscriptions and credit packs (processed by Apple)</li>
+      <li>Notification preferences</li>
+    </ul>
+    <p><strong style="color:var(--text)">AI Features:</strong></p>
+    <div class="highlight-box">
+      <p>When you use AI Autofill, the names and details you search for are sent to Anthropic's API to generate dossier content. We do not store these queries on our servers. Quick Note text is sent to Anthropic's API for parsing. This data is not retained by us after processing.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s3">
+    <h2><div class="section-num">3</div> How We Use Your Information</h2>
+    <ul>
+      <li>To provide and improve the Linkor app</li>
+      <li>To process in-app purchases via Apple's StoreKit</li>
+      <li>To send birthday and event reminders via local notifications</li>
+      <li>To generate AI-powered dossier content via Anthropic's API</li>
+      <li>To process referral rewards via CloudKit</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s4">
+    <h2><div class="section-num">4</div> Data Storage</h2>
+    <div class="teal-box">
+      <p>All personal contact data you enter is stored locally on your device using Apple's Core Data framework. We do not upload your contact data to our servers. If you enable iCloud sync, your data may be stored in your personal iCloud account under Apple's privacy terms.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s5">
+    <h2><div class="section-num">5</div> Third-Party Services</h2>
+    <p><strong style="color:var(--text)">Anthropic API:</strong> AI features use Anthropic's Claude API. Data sent includes search queries and note text. Anthropic's privacy policy applies to this data: <a href="https://anthropic.com/privacy" style="color:var(--accent2)">anthropic.com/privacy</a></p>
+    <p><strong style="color:var(--text)">Apple Services:</strong> Purchases, notifications, and iCloud sync are handled by Apple. Apple's privacy policy applies: <a href="https://apple.com/privacy" style="color:var(--accent2)">apple.com/privacy</a></p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s6">
+    <h2><div class="section-num">6</div> Data Sharing</h2>
+    <div class="highlight-box">
+      <p>We do not sell, trade, or rent your personal information to third parties. We do not share your contact data with anyone.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s7">
+    <h2><div class="section-num">7</div> Data Retention and Deletion</h2>
+    <p>All your data is stored on your device. You can delete all data by deleting the app. We do not retain any personal data on our servers.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s8">
+    <h2><div class="section-num">8</div> Children's Privacy</h2>
+    <p>Linkor is not directed to children under 13. We do not knowingly collect information from children under 13.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s9">
+    <h2><div class="section-num">9</div> Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access all data stored in the app at any time</li>
+      <li>Export your data using the Export feature in Settings</li>
+      <li>Delete all data by removing the app</li>
+      <li>Opt out of notifications in your device Settings</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s10">
+    <h2><div class="section-num">10</div> Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, please contact us through the in-app support or by visiting the Support section in the App Store page for Linkor.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="policy-section" id="s11">
+    <h2><div class="section-num">11</div> Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date at the top of this page.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="foot-logo">🔗 Linkor</div>
+  <a href="index.html">← Support Page</a>
+  <div class="foot-copy">© 2026 Linkor. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
